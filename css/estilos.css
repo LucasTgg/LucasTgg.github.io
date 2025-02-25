@@ -1,7 +1,12 @@
+
+
+
+
 #logo{
-    width: 15%;
-    height: auto;
+    height: 110px; /* Ajusta esto según el tamaño deseado */
+    width: auto; /* Mantiene la proporción de la imagen */
 }
+
 
 
 .hero{ background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), 
@@ -50,6 +55,7 @@
 nav{
     font-size: 17px;
 
+
 }
 
 nav ul li{
@@ -96,7 +102,7 @@ nav ul li{
 
 .wave-section {
     position: relative;
-    background: linear-gradient(45deg, #1db0ff, #0a5c8f);
+    background: linear-gradient(45deg, #0e5097, #0a5c8f);
     color: white;
     text-align: center;
     padding: 80px 20px;
@@ -122,7 +128,8 @@ nav ul li{
 
 
 .abogado{
-    width: auto;
+    width: 30%;
+    height: auto;
     
 }
 
@@ -347,12 +354,20 @@ footer ul{
 
     #logo{
     
-    margin: 0 auto;
-    width: 30%;
-    height: auto;
-    position: relative;
-    left: 30px;
+       margin: 0 auto;
+        width: 180px;   
+        height: auto; 
+        position: relative;
 
+        
+        left: 140px;
+
+    }
+
+    .abogado{
+        width: 90%;
+        height: auto;
+        
     }
 
    
