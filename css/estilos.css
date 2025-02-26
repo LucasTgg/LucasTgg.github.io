@@ -358,35 +358,7 @@ footer{
 @media (max-width: 768px) {
     /* Estilos específicos para móviles */
 
-   #logo-container{
-    
-    width: auto;
-    
-    
-    
-    
-   }
-    /* Logo nav */
-
-    nav{
-        
-        display: flex;
-        justify-content: center;
-
-    }
-
-    .contenedor-img{
-        
-        
-       
-        width: 65%;
-        display: flex;
-        justify-content: end;
-        
-        
-        
-
-    }
+   
 
     .imagen{
         
