@@ -24,7 +24,7 @@
     height: 70vh;
     display: flex;
     border-radius: 20px ;
-    box-shadow: 2px 10px 10px 5px;
+    box-shadow: rgb(16, 35, 51) 10px 10px 5px;
 }
 
 .imagen{
@@ -53,7 +53,7 @@
 
     background: rgba(255, 255, 255, 0.039); /* Fondo semitransparente */
     backdrop-filter: blur(100px); /* Difumina el fondo detrás de la caja */
-    border-radius: 10px; /* Bordes redondeados opcionales */
+    
     color: white; /* Color de texto */
     border: 1px solid rgba(255, 255, 255, 0.3); /* Borde sutil */
 }
