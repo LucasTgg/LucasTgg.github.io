@@ -11,7 +11,7 @@
 </head>
 <body>
    
-        <nav class="navbar navbar-expand-lg navbar-light bg-white">
+        <nav class="navbar navbar-expand-lg navbar-light bg-white ">
         <div class="container">
             <a href="index.html" id="logo-container">
                 <img class="img-fluid" id="logo" src="/imagenes/Logo.png" alt="Logo">
@@ -35,6 +35,22 @@
 
 
     <div class="contenido-blog">
+
+            
+        <style>
+            
+         
+            #margen{
+             margin: 300px;
+            }
+         </style>
+          <section id="margen" class="carga">
+             <div id="loading" style="text-align: center; font-size: 1.5em;">Cargando artículos...</div>
+             <div id="blog-container" class="row"></div>
+           </section>
+
+
+
         <h1 id="titulo"></h1>
         <img id="imagen" src="" alt="Imagen del artículo">
         <p id="contenido"></p>
@@ -47,55 +63,64 @@
 
 
 <script src="https://cdn.jsdelivr.net/npm/papaparse@5.3.2/papaparse.min.js"></script>
+
+
 <script>
-document.addEventListener("DOMContentLoaded", function() {
-    // Obtener el ID del artículo desde la URL (ej: articulo.html?id=1)
-    const params = new URLSearchParams(window.location.search);
-    const articleId = params.get("id");
-    console.log("ID recibido:", articleId);
-
-    // URL del CSV publicado desde Google Sheets (reemplázala por la tuya)
-    const sheetURL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQaRueMVKt4SvspMgPdqwvftejacg-vLHo1XeMs-VZCUWkvsTAC7XCTvZU_2m7WkvbAJXrUnIZnS4Pc/pub?gid=0&single=true&output=csv";
-
-    Papa.parse(sheetURL, {
-        download: true,
-        header: true,
-        skipEmptyLines: true,
-        complete: function(results) {
-            const articles = results.data;
-            console.log("Artículos parseados:", articles);
-            
-            // Buscar el artículo cuyo ID (sin espacios) coincida con el parámetro de la URL.
-            const article = articles.find(a => a.ID && a.ID.trim() == articleId);
-            
-            
-            if (!article) {
-                // Si no se encuentra, mostrar un mensaje de error.
-                document.getElementById("titulo").textContent = "Artículo no encontrado";
-                document.getElementById("imagen").style.display = "none";
-                document.getElementById("contenido").textContent = "";
-                console.error("No se encontró el artículo con ID:", articleId);
-                return;
+    document.addEventListener("DOMContentLoaded", function() {
+        // Mostrar el mensaje de carga
+        document.getElementById("loading").style.display = "block";
+    
+        // Obtener el ID del artículo desde la URL
+        const params = new URLSearchParams(window.location.search);
+        const articleId = params.get("id");
+        console.log("ID recibido:", articleId);
+    
+        // URL del CSV publicado desde Google Sheets
+        const sheetURL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQaRueMVKt4SvspMgPdqwvftejacg-vLHo1XeMs-VZCUWkvsTAC7XCTvZU_2m7WkvbAJXrUnIZnS4Pc/pub?gid=0&single=true&output=csv";
+    
+        Papa.parse(sheetURL, {
+            download: true,
+            header: true,
+            skipEmptyLines: true,
+            complete: function(results) {
+                const articles = results.data;
+                console.log("Artículos parseados:", articles);
+                
+                // Buscar el artículo cuyo ID (sin espacios) coincida con la URL
+                const article = articles.find(a => a.ID && a.ID.trim() == articleId);
+    
+                if (!article) {
+                    document.getElementById("titulo").textContent = "Artículo no encontrado";
+                    document.getElementById("imagen").style.display = "none";
+                    document.getElementById("contenido").textContent = "";
+                    console.error("No se encontró el artículo con ID:", articleId);
+                } else {
+                    // Mostrar el contenido del artículo
+                    document.getElementById("titulo").textContent = article["Título"] || "Sin título";
+                    document.getElementById("imagen").src = article["Imagen"] || "";
+                    document.getElementById("imagen").alt = article["Título"] || "Imagen del artículo";
+                    document.getElementById("contenido").innerHTML = (article["Contenido"] || "Sin contenido").replace(/\n/g, "<br>");
+                }
+    
+                // Ocultar el mensaje de carga cuando los datos estén listos
+                document.getElementById("loading").style.display = "none";
+                document.getElementById("margen").style.margin = "0";
+            },
+            error: function(err) {
+                console.error("Error al parsear CSV:", err);
+                document.getElementById("loading").textContent = "Error al cargar el artículo.";
             }
-            
-            
-            // Mostrar los datos en la página.
-            
-            document.getElementById("titulo").textContent = article["Título"] || "Sin título";
-            document.getElementById("imagen").src = article["Imagen"] || "";
-            document.getElementById("imagen").alt = article["Título"] || "Imagen del artículo";
-            document.getElementById("contenido").innerHTML = (article["Contenido"] || "Sin contenido").replace(/\n/g, "<br>");
-
-            
-
-            
-        },
-        error: function(err) {
-            console.error("Error al parsear CSV:", err);
-        }
+        });
     });
-});
-</script>
+    </script>
+    
+
+
+
+
+
+
+
 
 <section class="container-coments">
     <div class="contenedor-comentarios">

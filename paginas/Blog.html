@@ -31,72 +31,188 @@
         </div>
     </div>
 </nav>
+
+
+<style>
+   .carga{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+  
+   }
+
+   
+</style>
+
+
 <section class="container contenedor-blog">
+
+  <section id="margen" class="carga">
+    <div id="loading" style="text-align: center; font-size: 1.5em;">Cargando artículos...</div>
+    <div id="blog-container" class="row"></div>
+  </section>
     
     <div id="blog-container">
 
 </div></section>
 
     
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    // Asegurar que el mensaje de carga sea visible al inicio
+    document.getElementById("loading").style.display = "block";
+
+    const cachedData = localStorage.getItem("blogData");
+    const lastFetch = localStorage.getItem("lastFetch");
+
+    if (cachedData && lastFetch && (Date.now() - lastFetch < 3 * 60 * 1000)) { // 3 minutos
+        mostrarArticulos(JSON.parse(cachedData));
+    } else {
+        fetch("URL_DE_TU_SHEET")
+        .then(response => response.text())
+        .then(csvText => {
+            const result = Papa.parse(csvText, {
+                header: true,
+                skipEmptyLines: true
+            });
+
+            localStorage.setItem("blogData", JSON.stringify(result.data));
+            localStorage.setItem("lastFetch", Date.now());
+
+            mostrarArticulos(result.data);
+        });
+    }
+});
+
+function mostrarArticulos(articles) {
+    // Ocultar mensaje de carga cuando los artículos estén listos
+    document.getElementById("loading").style.display = "none";
+    document.getElementById("margen").style.margin = "0px";  
+
+    const container = document.getElementById("blog-container");
+    container.innerHTML = "";
+
+    articles.forEach(article => {
+        if (!article.Título) return;
+        const card = document.createElement("div");
+        card.classList.add("col-md-4", "mb-4");
+        card.innerHTML = `
+            <div class="card h-100">
+                <img src="${article.Imagen}" class="card-img-top" alt="${article.Título}">
+                <div class="card-body">
+                    <h5 class="card-title">${article.Título}</h5>
+                    <p class="card-text">${article.Resum
+
+</script>
+
+
+
+
+
+
+
+
+
 
 
 <script src="https://cdn.jsdelivr.net/npm/papaparse@5.3.2/papaparse.min.js"></script>
 
-
-
-<script>const sheetURL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQaRueMVKt4SvspMgPdqwvftejacg-vLHo1XeMs-VZCUWkvsTAC7XCTvZU_2m7WkvbAJXrUnIZnS4Pc/pub?gid=0&single=true&output=csv&t=" + new Date().getTime();
-    </script>
-
-
-
-
 <script>
-    document.addEventListener("DOMContentLoaded", () => {
-        const sheetURL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQaRueMVKt4SvspMgPdqwvftejacg-vLHo1XeMs-VZCUWkvsTAC7XCTvZU_2m7WkvbAJXrUnIZnS4Pc/pub?gid=0&single=true&output=csv";
-        
-        fetch(sheetURL)
-          .then(response => response.text())
-          .then(csvText => {
-            // Parsear con Papa Parse
-            const result = Papa.parse(csvText, {
-              header: true, // Asume que la primera fila son encabezados
-              skipEmptyLines: true, // Ignora filas vacías
-              quoteChar: '"',
-              escapeChar: '"'
-            });
-            
-            const articles = result.data; // Array de objetos
-            console.log("Artículos parseados:", articles);
-            
-            // Ahora 'articles' es un array con objetos {ID, Título, Resumen, ...}
-            // Ajusta los nombres según tus encabezados en Google Sheets.
-            
-            const container = document.getElementById("blog-container");
-            container.innerHTML = "";
-    
-            articles.forEach(article => {
-              // Evitar artículos sin título
-              if (!article.Título) return;
-    
-              // Crear tarjeta
-              const card = document.createElement("div");
-              card.classList.add("col-md-4", "mb-4");
-              card.innerHTML = `
-                <div class="card h-100">
-                  <img src="${article.Imagen}" class="card-img-top" alt="${article.Título}">
-                  <div class="card-body">
-                    <h5 class="card-title">${article.Título}</h5>
-                    <p class="card-text">${article.Resumen}</p>
-                    <a href="articulo.html?id=${article.ID}" class="btn btn-primary">Leer más</a>
-                  </div>
-                </div>
-              `;
-              container.appendChild(card);
-            });
-          })
-          .catch(err => console.error("Error al cargar CSV:", err));
-    });
-    </script>
+
+function truncarTexto(texto, maxPalabras) {
+  // Separa el texto en un array de palabras, ignorando espacios extras
+  const palabras = texto.trim().split(/\s+/);
+
+  // Si tiene menos o igual a maxPalabras, no se trunca
+  if (palabras.length <= maxPalabras) {
+    return texto;
+  }
+
+  // Toma solo las 'maxPalabras' primeras palabras y añade "..."
+  return palabras.slice(0, maxPalabras).join(" ") + "...";
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  // Muestra el mensaje de carga al inicio
+  document.getElementById("loading").style.display = "block";
+
+  const cachedData = localStorage.getItem("blogData");
+  const lastFetch = localStorage.getItem("lastFetch");
+
+  // Ajusta el tiempo (3 min) según tus necesidades
+  if (cachedData && lastFetch && (Date.now() - lastFetch < 3 * 60 * 1000)) {
+      // Si hay datos en caché y no han pasado 3 minutos, los usamos
+      mostrarArticulos(JSON.parse(cachedData));
+  } else {
+      // Si no, obtenemos los datos de Google Sheets
+      fetch("https://docs.google.com/spreadsheets/d/e/2PACX-1vQaRueMVKt4SvspMgPdqwvftejacg-vLHo1XeMs-VZCUWkvsTAC7XCTvZU_2m7WkvbAJXrUnIZnS4Pc/pub?gid=0&single=true&output=csv") // <--- REEMPLAZA AQUÍ CON TU ENLACE CSV
+      .then(response => response.text())
+      .then(csvText => {
+          // Parseamos el CSV con Papa Parse
+          const result = Papa.parse(csvText, {
+              header: true,
+              skipEmptyLines: true
+          });
+
+          // Guardamos en localStorage para cargas futuras
+          localStorage.setItem("blogData", JSON.stringify(result.data));
+          localStorage.setItem("lastFetch", Date.now());
+
+          // Mostramos los artículos
+          mostrarArticulos(result.data);
+      })
+      .catch(err => console.error("Error al cargar CSV:", err));
+  }
+});
+
+// 2️⃣ Función para mostrar artículos en el DOM
+function mostrarArticulos(articles) {
+  // Ocultamos el mensaje de carga
+  document.getElementById("loading").style.display = "none";
+
+  const container = document.getElementById("blog-container");
+  container.innerHTML = "";
+
+  articles.forEach(article => {
+    // Ignora filas sin Título
+    if (!article.Título) return;
+
+    // Crea la columna de Bootstrap
+    const card = document.createElement("div");
+    card.classList.add("col-md-4", "mb-4");
+
+    // Truncamos el resumen a 20 palabras (ajusta el número si quieres)
+    const resumenTruncado = truncarTexto(article.Resumen || "", 20);
+
+    // Creamos la tarjeta con Bootstrap
+    card.innerHTML = `
+      <div class="card h-100">
+        <img src="${article.Imagen}" class="card-img-top" alt="${article.Título}">
+        <div class="card-body">
+          <h5 class="card-title">${article.Título}</h5>
+          <p class="card-text">${resumenTruncado}</p>
+          <a href="articulo.html?id=${article.ID}" class="btn btn-primary">Leer más</a>
+        </div>
+      </div>
+    `;
+    container.appendChild(card);
+  });
+}
+</script>
+
+
+
+
+
+
+
+
+
+
+ 
     
 
 
@@ -104,7 +220,10 @@
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
   
-  <script src="/js/botonwp.js"></script>
+  
+
+
+  
 
 
 
