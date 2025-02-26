@@ -367,6 +367,34 @@ footer{
     /* Logo nav */
 
 
+    .contenedor-img{
+        
+        width: 83%;
+        
+        
+
+    }
+
+    .imagen{
+        
+        
+        display: flex;
+        justify-content: end;
+        height: 110px;
+        
+    }
+
+    .imagen a{
+        
+       display: flex;
+       
+       width: 274px !important;
+        
+        
+        
+        
+
+    }
 
 
 
@@ -376,8 +404,7 @@ footer{
         width: 180px;   
         height: 100%;
         
-        position: relative;
-        left: 114px;
+        
 
         
 
@@ -502,10 +529,43 @@ footer{
          left: 90px;
  
          
+
+         
  
          
         
  
      }
+
+
+
+     .contenedor-img{
+        
+        width: 48%;
+        
+        
+
+    }
+
+    .imagen{
+        
+        
+        display: flex;
+        justify-content: end;
+        height: 110px;
+        
+    }
+
+    .imagen a{
+        
+       display: flex;
+       
+       width: 274px !important;
+        
+        
+        
+        
+
+    }
 
 }
