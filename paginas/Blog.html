@@ -60,60 +60,6 @@
 </div></section>
 
     
-<script>
-  document.addEventListener("DOMContentLoaded", () => {
-    // Asegurar que el mensaje de carga sea visible al inicio
-    document.getElementById("loading").style.display = "block";
-
-    const cachedData = localStorage.getItem("blogData");
-    const lastFetch = localStorage.getItem("lastFetch");
-
-    if (cachedData && lastFetch && (Date.now() - lastFetch < 3 * 60 * 1000)) { // 3 minutos
-        mostrarArticulos(JSON.parse(cachedData));
-    } else {
-        fetch("URL_DE_TU_SHEET")
-        .then(response => response.text())
-        .then(csvText => {
-            const result = Papa.parse(csvText, {
-                header: true,
-                skipEmptyLines: true
-            });
-
-            localStorage.setItem("blogData", JSON.stringify(result.data));
-            localStorage.setItem("lastFetch", Date.now());
-
-            mostrarArticulos(result.data);
-        });
-    }
-});
-
-function mostrarArticulos(articles) {
-    // Ocultar mensaje de carga cuando los artículos estén listos
-    document.getElementById("loading").style.display = "none";
-    document.getElementById("margen").style.margin = "0px";  
-
-    const container = document.getElementById("blog-container");
-    container.innerHTML = "";
-
-    articles.forEach(article => {
-        if (!article.Título) return;
-        const card = document.createElement("div");
-        card.classList.add("col-md-4", "mb-4");
-        card.innerHTML = `
-            <div class="card h-100">
-                <img src="${article.Imagen}" class="card-img-top" alt="${article.Título}">
-                <div class="card-body">
-                    <h5 class="card-title">${article.Título}</h5>
-                    <p class="card-text">${article.Resum
-
-</script>
-
-
-
-
-
-
-
 
 
 
@@ -143,7 +89,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const lastFetch = localStorage.getItem("lastFetch");
 
   // Ajusta el tiempo (3 min) según tus necesidades
-  if (cachedData && lastFetch && (Date.now() - lastFetch < 3 * 60 * 1000)) {
+  if (cachedData && lastFetch && (Date.now() - lastFetch < 5 * 60 * 1000)) {
       // Si hay datos en caché y no han pasado 3 minutos, los usamos
       mostrarArticulos(JSON.parse(cachedData));
   } else {

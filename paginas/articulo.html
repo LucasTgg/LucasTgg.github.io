@@ -139,6 +139,67 @@
 
 </section>
 
+<section class="articulos-re">
+    <div id="articulos-relacionados" class="">
+        <h3 class="">Las personas que leyeron este artículo también leyeron:</h3>
+        <div class="row" id="relacionados-container"></div>
+     </div>
+</section>
+
+
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const currentArticleId = new URLSearchParams(window.location.search).get("id");
+    
+        // Obtener los datos almacenados en caché
+        const cachedData = localStorage.getItem("blogData");
+    
+        if (cachedData) {
+            const articles = JSON.parse(cachedData);
+    
+            // Filtramos el artículo actual
+            const otrosArticulos = articles.filter(article => article.ID !== currentArticleId);
+    
+            // Mezclamos los artículos y tomamos 3 al azar
+            const articulosAleatorios = otrosArticulos.sort(() => Math.random() - 0.5).slice(0, 3);
+    
+            // Mostramos los artículos en el DOM
+            mostrarArticulosRelacionados(articulosAleatorios);
+        }
+    });
+    
+    // Función para mostrar los artículos relacionados
+    function mostrarArticulosRelacionados(articles) {
+        const container = document.getElementById("relacionados-container");
+        container.innerHTML = "";
+    
+        articles.forEach(article => {
+            if (!article.Título) return;
+    
+            const card = document.createElement("div");
+            card.classList.add("col-md-4", "mb-3");
+    
+            card.innerHTML = `
+                <div class="card h-100">
+                    <img src="${article.Imagen}" class="card-img-top" alt="${article.Título}">
+                    <div class="card-body">
+                        <h5 class="card-title">${article.Título}</h5>
+                        <a href="articulo.html?id=${article.ID}" class="btn btn-secondary">Leer más</a>
+                    </div>
+                </div>
+            `;
+            container.appendChild(card);
+        });
+    }
+    </script>
+
+
+
+
+
+
+
+
 
     <!-- Firebase -->
     <script type="module">
