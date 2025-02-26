@@ -54,6 +54,7 @@
 
 nav{
     font-size: 17px;
+    box-shadow: 1px 1px 5px 1px;
 
 
 }
@@ -234,6 +235,14 @@ footer ul{
     flex-direction: column;
 }
 
+footer{
+    background-color: black;
+    color: white;
+    height: 100%;
+    border: solid black;
+   
+}
+
 .datos-contacto{
     
     display: flex;
@@ -349,18 +358,31 @@ footer ul{
 @media (max-width: 768px) {
     /* Estilos específicos para móviles */
 
-   
+   #logo-container{
+    
+    width: 70%;
+    
+    
+   }
     /* Logo nav */
+
+
+
+
 
     #logo{
     
        margin: 0 auto;
         width: 180px;   
-        height: auto; 
+        height: 100%;
+        
         position: relative;
+        left: 114px;
 
         
-        left: 140px;
+
+        
+       
 
     }
 
@@ -468,3 +490,22 @@ footer ul{
 }
 
 
+@media (max-width: 375px){
+
+    #logo{
+    
+        margin: 0 auto;
+         width: 180px;   
+         height: 100%;
+         
+         position: relative;
+         left: 90px;
+ 
+         
+ 
+         
+        
+ 
+     }
+
+}

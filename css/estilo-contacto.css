@@ -6,6 +6,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    
 }
 
 .contenedor-principal{
@@ -35,6 +36,29 @@
     color: white;
 
 }
+
+.form-contenedor {
+    width: 70%;
+    height: 100%;
+    border-radius: 0 20px 20px 0;
+    background: linear-gradient(45deg, #0e5097, #005f6c);
+    background-size: 300% 300%;
+    animation: fondoAnimado 6s infinite alternate;
+    color: white;
+}
+
+@keyframes fondoAnimado {
+    0% { background-position: 0% 50%; }
+    100% { background-position: 100% 50%; }
+}
+
+
+
+
+
+
+
+
 
 .imagen{
 background: url('/imagenes/Logo.png') no-repeat center center;
@@ -117,30 +141,44 @@ button{
     height: auto;
     background-color: #0e5097;
     color: white;
+    
+    height: 100%;
 
 
+}
+
+.textoubi{
+    padding: 20px;
 }
 
 .contenedor-ubi{
    
     display: flex;
     flex-direction: column;
-    align-items: center;
+    
     text-align: center;
+    height: 50vh;
 
 }
 
 .mapa{
     
     width: 100%;
-    height: 40vh;
+    height: 100%;
+   
+    margin: 0;
 }
 
 iframe{
     width: 100%;
     height: 100%;
     
+    margin: 0;
 
+}
+
+.footer{
+    margin-top: 0 !important;
 }
 
 
@@ -156,14 +194,22 @@ iframe{
         border-radius: 20px;
         background-color: #0e5097;
         color: white;
+        font-size: 18px;
     
     }
 
     .contenedor-principal{
-        
+        margin: 20px;
         width: 80%;
-        height: 70vh;
+        height: 95%;
+        
+        
        
+    }
+
+    .contenedor-boton{
+        margin-top: 20px;
+        margin-bottom: 20px;
     }
 }
 

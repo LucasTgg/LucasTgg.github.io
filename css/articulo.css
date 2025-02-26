@@ -1,0 +1,161 @@
+/* Estilos generales para la página de artículo */
+
+nav{
+
+    margin: 0;
+    font-size: 16px !important;
+
+}
+
+
+body {
+    
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    background-color: #f8f8f8;
+    margin: 0;
+    
+    color: #333;
+}
+
+/* Contenedor principal del artículo */
+.contenido-blog{
+    max-width: 1000px;
+    margin: 0 auto;
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Título del artículo */
+#titulo {
+    font-size: 2.5em;
+    margin-bottom: 20px;
+    text-align: center;
+    color: #222;
+}
+
+/* Imagen destacada */
+#imagen {
+    width: 80%;
+    height: auto;
+    display: block;
+    margin: 0 auto 20px auto;
+    border-radius: 5px;
+}
+
+/* Contenido del artículo */
+#contenido {
+    font-size: 1.125em;
+    line-height: 1.6;
+    color: #555;
+}
+
+/* Contenedor general de comentarios */
+#comments {
+    background-color: #f5f5f5;
+    padding: 20px;
+    border-radius: 5px;
+    margin-top: 40px;
+  }
+  
+  /* Título de la sección de comentarios */
+  #comments h3 {
+    color: #0e5097;
+    font-size: 1.5em;
+    text-align: center;
+    margin-bottom: 20px;
+    
+  }
+
+ #comments-list{
+    list-style: none;
+    font-size: 20px;
+   
+ }
+
+
+ #comments-list:hover,
+#comments-list li:hover,
+#comments-list div:hover,
+#comments-list .list-group-item:hover {
+  background-color: transparent !important; 
+  color: inherit !important; 
+  box-shadow: none !important; 
+  transition: none !important;
+}
+
+
+
+
+  
+  /* Lista de comentarios */
+  #lista-comentarios {
+    margin-top: 20px;
+  }
+  
+  /* Estilo para cada comentario individual */
+  .comment {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 10px;
+  }
+
+  
+  /* Formulario de comentarios */
+  #comment-form {
+    margin-top: 20px;
+  }
+
+
+
+  .container-coments{
+    
+    margin: 20px;
+    display: flex;
+    justify-content: center;
+    
+    
+   
+    
+  }
+
+  .contenedor-comentarios{
+    
+    width: 50%;
+  }
+
+  .comentarios{
+    
+  }
+
+ 
+  
+  /* Campos del formulario: input y textarea */
+  #comment-form input[type="text"],
+  #comment-form textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1em;
+  }
+  
+  /* Botón de envío del comentario */
+  #comment-form button {
+    background-color: #0e5097;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  #comment-form button:hover {
+    background-color: #093d75;
+  }
+  
