@@ -360,16 +360,29 @@ footer{
 
    #logo-container{
     
-    width: 70%;
+    width: auto;
+    
+    
     
     
    }
     /* Logo nav */
 
+    nav{
+        
+        display: flex;
+        justify-content: center;
+
+    }
 
     .contenedor-img{
         
-        width: 83%;
+        
+       
+        width: 65%;
+        display: flex;
+        justify-content: end;
+        
         
         
 
@@ -379,16 +392,18 @@ footer{
         
         
         display: flex;
-        justify-content: end;
+        justify-content: center;
         height: 110px;
+        width: 110px;
+        
         
     }
 
     .imagen a{
         
-       display: flex;
+      width: 100%;
+      height: 100%;
        
-       width: 274px !important;
         
         
         
