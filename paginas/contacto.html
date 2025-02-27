@@ -67,16 +67,75 @@
                     method="POST"
                     >
                     <label>
-                        <p>Su nombre:</p>
-                        <input type="text" name="nombre">
+                        <input type="text" placeholder="Tu nombre"  name="nombre" required>
+                        <span class="required">*</span>
                     </label>
                     <label>
-                        <p>Su correo:</p>
-                        <input type="email" name="email">
+                        <input type="number" placeholder="Cedula"  name="cedula" required>
+                        <span class="required">*</span>
                     </label>
+                    <label>
+                        <input type="email" placeholder="Email"   name="email" required>
+                        <span class="required">*</span>
+                    </label>
+                    
+                    <label>
+                        
+                        <div class="custom-select"> 
+                            <div class="select-btn disabled">Tipo de consulta</div> <!-- Opción inicial bloqueada -->
+                            <div class="select-dropdown">
+                                <div class="option disabled" data-value="">Tipo de consulta</div>  <!-- Opción NO seleccionable -->
+                                <div class="option" data-value="opcion1">Opción 1</div>
+                                <div class="option" data-value="opcion2">Opción 2</div>
+                                <div class="option" data-value="opcion3">Opción 3</div>
+                            </div>
+                        </div>
+                        <span class="required">*</span>
+
+                        <input type="hidden" name="tipo_consulta" id="selectedValue"> 
+
+                        <script>
+                            document.addEventListener("DOMContentLoaded", () => {
+                                const select = document.querySelector(".custom-select");
+                                const selectBtn = select.querySelector(".select-btn");
+                                const dropdown = select.querySelector(".select-dropdown");
+                                const options = dropdown.querySelectorAll(".option");
+                                const hiddenInput = document.getElementById("selectedValue");
+                        
+                                // Toggle del menú
+                                selectBtn.addEventListener("click", () => {
+                                    select.classList.toggle("active");
+                                });
+                        
+                                // Seleccionar opción
+                                options.forEach(option => {
+                                    option.addEventListener("click", () => {
+                                        selectBtn.textContent = option.textContent; // Mostrar opción seleccionada
+                                        hiddenInput.value = option.dataset.value; // Guardar en el input oculto
+                                        select.classList.remove("active"); // Cerrar menú
+                                    });
+                                });
+                        
+                                // Cerrar si se hace clic fuera
+                                document.addEventListener("click", (e) => {
+                                    if (!select.contains(e.target)) {
+                                        select.classList.remove("active");
+                                    }
+                                });
+                            });
+                        </script>
+
+                        
+                    </label>
+
                     <label class="area">
-                        <p>Su mensaje:</p>
-                        <textarea name="message"></textarea>
+                        
+                        <textarea name="message" placeholder="Escriba su mensaje..." required></textarea>
+                        <span class="required">*</span>
+                    </label>
+                    <label for="aceptar" class="aceptacion">
+                        <input type="checkbox" id="aceptar" required>
+                        <span>Acepto el tratamiento de mis datos personales</span> <span class="required">*</span></label>
                     </label>
                     <div class="contenedor-boton">
                         <button class="rounded-3" type="submit">Enviar</button>

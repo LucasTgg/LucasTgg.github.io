@@ -2,12 +2,12 @@
     
     
     width: 100%;
-    height: 80vh;
+    
     display: flex;
     justify-content: center;
     align-items: center;
-    background: linear-gradient(45deg, #0e5097, #51dcff,#0f2c83,#1e88a5 );
-    animation: fondoAnimado 30s infinite alternate;
+    background: linear-gradient(45deg, #0a294a, #02232b,#0f2c83,#00485c );
+    animation: fondoAnimado 5s infinite alternate;
     background-size: 300% 300%;
     
 }
@@ -21,41 +21,39 @@
     border: solid gray;
     border-width: 1px;
     width: 60%;
-    height: 70vh;
+
     display: flex;
     border-radius: 20px ;
     box-shadow: rgb(16, 35, 51) 10px 10px 5px;
+    margin: 80px;
+    
 }
 
 .imagen{
     
     width: 30%;
-    height: 100%;
-    display: flex;
-    border-radius:20px 0 0 20px;
+    aspect-ratio: 16 / 9;
+    border-radius:20px 0 0 20px;    
+    background: url('/imagenes/Logo.png') no-repeat center center;
+    
     
 }
 
-.form-contenedor{
-    
-    width: 70%;
-    height: 100%;
-    border-radius: 0 20px 20px 0;
-    color: white;
 
-}
 
 .form-contenedor {
     width: 70%;
     height: 100%;
     border-radius: 0 20px 20px 0;
     color: white;
-
     background: rgba(255, 255, 255, 0.039); /* Fondo semitransparente */
     backdrop-filter: blur(100px); /* Difumina el fondo detrás de la caja */
     
     color: white; /* Color de texto */
     border: 1px solid rgba(255, 255, 255, 0.3); /* Borde sutil */
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
 }
 
 
@@ -68,11 +66,10 @@
 
 
 
-.imagen{
-background: url('/imagenes/Logo.png') no-repeat center center;
-background-size: contain;
-background-color: white;
-}
+
+
+
+
 
 .texto{
     width: 100%;
@@ -95,7 +92,7 @@ background-color: white;
 }
 
 form{
-    
+    margin: 10px;
     width: 80%;
     height: 100%;
     display: flex;
@@ -107,11 +104,38 @@ form{
 }
 
 label{
+    margin: 15px;
+    width:100%;
+    color: white;
+    font-size: 16px;
    
-    width: 100%;
 }
 
-input, textarea {
+label input{
+    width: 95%;
+}
+
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+
+
+input::placeholder{
+    color: white;
+}
+
+textarea::placeholder{
+    color: white;
+}
+
+input:focus, textarea:focus, select:focus{
+    outline: none;
+}
+
+input, textarea, select {
     width: 100%;
     padding: 8px;
     margin-bottom: 15px; /* Espacio entre cada campo */
@@ -125,9 +149,121 @@ input, textarea {
     color: white;
 }
 
-textarea{
-    height: 80%;
+.custom-select {
+    position: relative;
+    width: 250px;
+    cursor: pointer;
+    user-select: none;
+   
     
+}
+
+/* Botón principal */
+.select-btn {
+    background: rgba(255, 255, 255, 0.039);
+    backdrop-filter: blur(10px);
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: white;
+    padding: 12px;
+    font-size: 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: 0.3s ease;
+}
+
+/* Flecha */
+.select-btn::after {
+    content: "▼";
+    font-size: 14px;
+    transition: transform 0.3s ease;
+}
+
+/* Estilo cuando el select está abierto */
+.custom-select.active .select-btn::after {
+    transform: rotate(180deg);
+    
+}
+
+/* Lista desplegable */
+.select-dropdown {
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.039);
+    backdrop-filter: blur(10px);
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: white;
+    display: none;
+    flex-direction: column;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+   
+}
+
+/* Mostrar lista desplegable */
+.custom-select.active .select-dropdown {
+    display: flex;
+    opacity: 1;
+    transform: translateY(0);
+   
+}
+
+/* Estilos de cada opción */
+.option {
+    padding: 12px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s;
+    
+}
+
+.option:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+
+
+.custom-select .option.disabled {
+    color: gray;
+    pointer-events: none; /* Evita clics en la opción */
+    opacity: 0.5; /* Visualmente indica que está bloqueado */
+}
+
+
+
+
+
+textarea{
+    
+    height: 100%;
+    
+    
+}
+
+
+.aceptacion {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Espacio entre el checkbox y el texto */
+    padding: 10px;
+}
+
+.aceptacion input[type="checkbox"] {
+    width: 18px; 
+    height: 18px;
+    accent-color: #007bff; /* Color azul para el checkbox */
+    cursor: pointer;
+}
+
+.aceptacion span {
+    font-size: 16px;
+    color: white; /* Asegurar que el texto sea visible */
 }
 
 .contenedor-boton{
@@ -141,10 +277,11 @@ textarea{
 
 button{
   
-    background-color: #50a5ff;
+    background-color: #14467b;
     color: white;
     padding: 10px;
-    border: none;
+    border: solid white;
+    border-width: 0.1px;
     border-radius: 20px;
     font-size: 20px;
 }
@@ -201,12 +338,13 @@ iframe{
         display: none;
     }
 
-    .form{
-        font-size: 10px;
+    label{
+        font-size: 16px;
+        margin: 5px;
     }
 
     .contacto{
-        height: 90vh;
+        
         padding-bottom: 50px;
         padding-top: 40px;
     }
@@ -219,13 +357,14 @@ iframe{
         color: white;
         
         
+        
     
     }
 
     .contenedor-principal{
         margin: 20px;
         width: 80%;
-        height: 85vh;
+        
         
         
         
@@ -233,11 +372,20 @@ iframe{
        
     }
 
-    .contenedor-boton{
-        margin-top: 20px;
-        margin-bottom: 20px;
-    
-        padding: 20px;
+    .aceptacion span{
+        font-size: 12px;
+       
     }
+
+    .aceptacion{
+        margin: 5px;
+    }
+
+    .custom-select{
+        
+        width: 95%;
+    }
+
+    
 }
 
