@@ -31,10 +31,14 @@
 
 .imagen{
     
-    width: 30%;
+    width: 50%;
     aspect-ratio: 16 / 9;
     border-radius:20px 0 0 20px;    
-    background: url('/imagenes/Logo.png') no-repeat center center;
+    background: url('/imagenes/inicio/banner2.jpg') no-repeat center center;
+    background-size: cover;
+    background-position: center;
+    
+   
     
     
 }
@@ -149,6 +153,15 @@ input, textarea, select {
     color: white;
 }
 
+input{
+    height: 50px;
+}
+
+textarea{
+   resize: none !important;
+
+}
+
 .custom-select {
     position: relative;
     width: 250px;
@@ -188,11 +201,12 @@ input, textarea, select {
 
 /* Lista desplegable */
 .select-dropdown {
+    position: absolute;
     top: 100%;
     left: 0;
     width: 100%;
-    background: rgba(255, 255, 255, 0.039);
-    backdrop-filter: blur(10px);
+    background: rgba(6, 44, 160, 0.817);
+    backdrop-filter: blur(100px);
     border-radius: 10px;
     border: 1px solid rgba(255, 255, 255, 0.3);
     color: white;
@@ -203,6 +217,7 @@ input, textarea, select {
     opacity: 0;
     transform: translateY(-10px);
     transition: opacity 0.3s ease, transform 0.3s ease;
+    z-index: 4;
    
 }
 
